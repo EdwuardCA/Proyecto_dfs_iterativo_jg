@@ -25,7 +25,22 @@ class Stack:
 
 
 class Graph:
-    pass
+    #Implementacion de un grafo con lista de adyacencia
+    def __init__(self):
+        self.adj = [] #diccionario: nodo -> lista de vecinos
+    
+    def add_vertex(self, v):
+        if v not in self.adj:
+            self.adj[v] = []
+    
+    def add_edge(self, u, v):
+        #Grafor NO dirigido
+        self.add_vertex(u)
+        self.add_vertex(v)
+        self.adj[u].append(v)
+        self.adj[v].append(u)
+
+    
 
 def pruebas():
     pass
