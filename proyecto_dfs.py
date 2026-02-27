@@ -66,6 +66,34 @@ class Graph:
 
         return order
 
+    def connected_components(self): #Componentes conexos
+        visited = set()
+        comps = []
+
+        for start in self.adj.keys():
+            if start in visited:
+                continue
+
+            #DFS desde start para sacar un componente
+            stack = Stack()
+            stack.push(start)
+            comp = []
+
+            while not stack.is_empty():
+                node = stack.pop()
+                if node in visited:
+                    continue
+
+                visited.add(node)
+                comp.append(node)
+
+                for neigh in self.adj[node]:
+                    if neigh not in visited:
+                        stack.push(neigh)
+
+            comps.append(comp)
+
+        return comps
 
 def pruebas():
     pass
