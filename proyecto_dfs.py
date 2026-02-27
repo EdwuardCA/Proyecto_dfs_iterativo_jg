@@ -95,8 +95,60 @@ class Graph:
 
         return comps
 
+    def has_cycle_undirected(self):
+        visited = set()
+
+        for start in self.adj.keys():
+            if start in visited:
+                continue
+
+            # DFS con parent
+            stack = Stack()
+            stack.push((start, None))
+
+            while not stack.is_empty():
+                item = stack.pop()
+                if item is None:
+                    break
+                node, parent = item
+
+                if node in visited:
+                    # Ojo: en esta versión, evitamos re-procesar
+                    continue
+
+                visited.add(node)
+
+                for neigh in self.adj[node]:
+                    if neigh not in visited:
+                        stack.push((neigh, node))
+                    elif neigh != parent:
+                        return True
+
+        return False
+
 def pruebas():
-    pass
+    print("=== PRUEBA 1: DFS en grafo SIN ciclo ===")
+    g1 = Graph()
+    g1.add_edge("A", "B")
+    g1.add_edge("A", "C")
+    g1.add_edge("B", "D")
+    print("DFS desde A:", g1.dfs_iterative("A"))
+    print()
+
+    print("=== PRUEBA 2: Detección de ciclo (grafo CON ciclo) ===")
+    g2 = Graph()
+    g2.add_edge(1, 2)
+    g2.add_edge(2, 3)
+    g2.add_edge(3, 1)  # ciclo
+    print("¿Tiene ciclo?:", g2.has_cycle_undirected())
+    print()
+
+    print("=== PRUEBA 3: Componentes conexas (2+ componentes) ===")
+    g3 = Graph()
+    g3.add_edge("X", "Y")
+    g3.add_edge("Y", "Z")
+    g3.add_edge("P", "Q")  # componente separada
+    print("Componentes:", g3.connected_components())
 
 
 if __name__ == "__main__":
