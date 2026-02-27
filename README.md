@@ -1,6 +1,6 @@
 # Proyecto: DFS Iterativo con Pila Propia
 
-## 📌 Descripción
+##  Descripción
 
 Este proyecto implementa el algoritmo **DFS (Depth First Search)** de manera iterativa, es decir, sin utilizar recursión.  
 Para lograrlo, se diseñó e implementó manualmente una estructura de datos **Stack (Pila)** que permite simular el comportamiento de la pila de llamadas del sistema.
@@ -9,7 +9,7 @@ El proyecto también incluye funcionalidades adicionales para trabajar con grafo
 
 ---
 
-## 🎯 Objetivo
+##  Objetivo
 
 Aplicar los conceptos fundamentales de estructuras de datos mediante:
 
