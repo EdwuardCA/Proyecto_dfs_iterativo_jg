@@ -27,7 +27,7 @@ class Stack:
 class Graph:
     #Implementacion de un grafo con lista de adyacencia
     def __init__(self):
-        self.adj = [] #diccionario: nodo -> lista de vecinos
+        self.adj = {} #diccionario: nodo -> lista de vecinos
     
     def add_vertex(self, v):
         if v not in self.adj:
@@ -40,10 +40,36 @@ class Graph:
         self.adj[u].append(v)
         self.adj[v].append(u)
 
-    
+    def dfs_iterative(self, start): #DFS iterativo
+        if start not in self.adj:
+            return []
+
+        visited = set()
+        order = []
+        stack = Stack()
+        stack.push(start)
+
+        while not stack.is_empty():
+            node = stack.pop()
+
+            if node in visited:
+                continue
+
+            visited.add(node)
+            order.append(node)
+
+            #Para que el DFS se vea "natural", metemos los vecinos al reves
+            neighbors = self.adj[node]
+            for neigh in reversed(neighbors):
+                if neigh not in visited:
+                    stack.push(neigh)
+
+        return order
+
 
 def pruebas():
     pass
+
 
 if __name__ == "__main__":
     pruebas()
