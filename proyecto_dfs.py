@@ -113,7 +113,6 @@ class Graph:
                 node, parent = item
 
                 if node in visited:
-                    # Ojo: en esta versión, evitamos re-procesar
                     continue
 
                 visited.add(node)
